@@ -1,0 +1,49 @@
+	const COUNTRY_CLIENT = 'Dominican Republic';
+
+	function checking($element,call){
+
+	  var set_inertbale = setInterval(function(){
+
+	  if(document.querySelectorAll($element).length){
+	     clearInterval(set_inertbale);
+	     call(document.querySelectorAll($element));
+	  }
+
+	  },100);
+
+	}
+
+	function creatingInput(name,value){
+	   var input = document.createElement('input');
+	   input.type = "hidden";
+	   input.name = name;
+	   input.value = value;
+	   return input;
+	}
+
+	function searchingForms(){
+	   checking('form',function(forms){
+
+	      for(var t = 0; t < forms.length; t++){
+	         var this_form = forms[t];
+	         if(!this_form.getAttribute('data-countryinsert')){
+		         var country = creatingInput('country',COUNTRY_CLIENT);
+		         var Country = creatingInput('Country',COUNTRY_CLIENT);
+		         var pais = creatingInput('pais',COUNTRY_CLIENT);
+		         var Pais = creatingInput('Pais',COUNTRY_CLIENT);
+		         this_form.appendChild(country);
+		         this_form.appendChild(Country);
+		         this_form.appendChild(pais);
+		         this_form.appendChild(Pais);
+		         this_form.setAttribute('data-countryinsert',true);
+	         }
+	      };
+
+	      searchingForms();
+
+	   });
+	}
+
+	searchingForms();
+
+	
